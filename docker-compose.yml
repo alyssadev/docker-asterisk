@@ -1,0 +1,11 @@
+services:
+  asterisk:
+    image: ghcr.io/alyssadev/docker-asterisk:latest
+    ports:
+      - 5060:5060/udp
+      - 5060:5060/tcp
+    volumes:
+      - ./extensions.conf:/etc/asterisk/extensions.conf
+      - ./pjsip.conf:/etc/asterisk/pjsip.conf
+    restart: unless-stopped
+    command: asterisk -cvvvvv
